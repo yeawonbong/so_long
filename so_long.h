@@ -1,8 +1,8 @@
-#ifndef __SO_LONG_H__
-# define __SO_LONG_H__
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 #include <stdlib.h>
-#include "./minilibx_mms_20200219/mlx.h"
+#include "minilibx_mms_20200219/mlx.h"
 
 # define KEYPRESS 2
 # define W 13

@@ -14,10 +14,10 @@ typedef struct s_img
 
 int		move_character(int keycode, t_img *img)
 {
-	if (keycode == W)
-	{
+	// if (keycode == W)
+	// {
 
-	}
+	// }
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(img->mlx, img->window);

@@ -1,18 +1,6 @@
 #include "so_long.h"
 
-
-typedef struct s_img
-{
-	void	*mlx;
-	void	*window;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_img;
-
-int		move_character(int keycode, t_img *img)
+int		move_character(int keycode, t_mlx *mlx)
 {
 	// if (keycode == W)
 	// {
@@ -20,7 +8,7 @@ int		move_character(int keycode, t_img *img)
 	// }
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(img->mlx, img->window);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->window);
 		exit(0);//정상종료 찾아볼것
 	}
 	return 0;
@@ -36,16 +24,18 @@ void	put_pixel(t_img *img, int x, int y, int color)
 
 int main(void)
 {
-
+	t_mlx	*mlx;
 	t_img	*img;
 
+	mlx = malloc(sizeof(t_mlx));
 	img = malloc(sizeof(t_img));
-    img->mlx = mlx_init();
+    mlx->mlx_ptr = mlx_init();
+	mlx->window = mlx_new_window(mlx->mlx_ptr, 1920, 1080, "test");
+
+	img->img_ptr = mlx_new_image(mlx->mlx_ptr, 192, 108);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	img->bits_per_pixel = 1;
 	img->line_length = 1920;
-	img->window = mlx_new_window(img->mlx, 1920, 1080, "test");
-	img->img = mlx_new_image(img->mlx, 192, 108);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 
 	for (int i = 0; i <= 192; i++)
 	{
@@ -54,9 +44,9 @@ int main(void)
 	}
 	for (int size = 0; size <= 10; size++)
 	{
-		mlx_put_image_to_window(img->mlx, img->window, img->img, 192 * size, 0);
+		mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, img->img_ptr, 192 * size, 0);
 	}
-	mlx_hook(img->window, KEYPRESS, 0, &move_character, img);
-	mlx_loop(img->mlx);
+	mlx_hook(mlx->window, KEYPRESS, 0, &move_character, mlx);
+	mlx_loop(mlx->mlx_ptr);
 	return 0;
 }

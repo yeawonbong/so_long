@@ -11,4 +11,22 @@
 # define D 2
 # define ESC 53
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*window;
+}				t_mlx;
+
+typedef struct s_img
+{
+	// void	*mlx;
+	// void	*window;
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
+
+
 #endif

@@ -32,10 +32,10 @@ int main(void)
     mlx->mlx_ptr = mlx_init();
 	mlx->window = mlx_new_window(mlx->mlx_ptr, 1920, 1080, "test");
 
-	img->img_ptr = mlx_new_image(mlx->mlx_ptr, 192, 108);
-	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 	img->bits_per_pixel = 1;
 	img->line_length = 1920;
+	img->img_ptr = mlx_new_image(mlx->mlx_ptr, 192, 108);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel, &img->line_length, &img->endian);
 
 	for (int i = 0; i <= 192; i++)
 	{

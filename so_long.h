@@ -18,6 +18,9 @@ typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*window;
+	char	**map;
+	int		x;
+	int		y;
 }				t_mlx;
 
 typedef struct s_img

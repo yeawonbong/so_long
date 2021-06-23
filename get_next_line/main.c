@@ -6,28 +6,27 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 05:29:36 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/23 20:50:59 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/23 20:45:39 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "get_next_line.h"
 
 int	main(void)
 {
-	char	**line;
+	char	*line = NULL;
 	int		fd = 0;
 	int		gnl;
 
-	*line = NULL;
-	fd = open("map.ber", O_RDONLY);
+	fd = open("test copy.txt", O_RDONLY);
 	printf("fd = %d\n", fd);
-	while ((gnl = get_next_line(fd, line)) > 0)
+	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
-		printf("line = %s\n", *line);
+		printf("line = %s\n", line);
 	}
-	printf("line = %s\n", *line);
-	free(*line);
-	system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+	printf("line = %s", line);
+	free(line);
+	// system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	return (0);
 }
 

@@ -4,7 +4,8 @@
 #include <stdio.h>
 
 #include <stdlib.h>
-#include "minilibx_mms_20200219/mlx.h"
+#include "./minilibx_mms_20200219/mlx.h"
+#include "./get_next_line/get_next_line.h"
 
 # define KEYPRESS 2
 # define W 13

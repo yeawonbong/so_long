@@ -13,26 +13,7 @@
 # define S 1
 # define D 2
 # define ESC 53
-
-typedef struct	s_map
-{
-	void	**map;
-	int		width;
-	int		height;
-
-	int		collectible;
-	int		exitp;
-	int		startp;
-}				t_map;
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*window;
-	t_map	*map;
-	int		x;
-	int		y;
-}				t_mlx;
+# define BITSIZE 64
 
 typedef struct s_img
 {
@@ -43,5 +24,29 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct	s_map
+{
+	void	**map;
+	int		width;
+	int		height;
+
+	int		collectible;
+	int		exitp;
+	int		startp;
+	t_img	*wall;
+}				t_map;
+
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*window;
+	int		x;
+	int		y;
+	t_map	*map;
+}				t_mlx;
+
+char	*error_exit();
+void	map_size(t_map *map);
+void	get_map(t_mlx *mlx);
 
 #endif

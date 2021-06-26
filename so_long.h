@@ -14,19 +14,28 @@
 # define D 2
 # define ESC 53
 
+typedef struct	s_map
+{
+	void	**map;
+	int		width;
+	int		height;
+
+	int		collectible;
+	int		exitp;
+	int		startp;
+}				t_map;
+
 typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*window;
-	char	**map;
+	t_map	*map;
 	int		x;
 	int		y;
 }				t_mlx;
 
 typedef struct s_img
 {
-	// void	*mlx;
-	// void	*window;
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;

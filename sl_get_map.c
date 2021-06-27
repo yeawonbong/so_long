@@ -32,20 +32,20 @@ void	get_map(t_mlx *mlx)
 
 	map = malloc(sizeof(t_map));
 	map_size(map);
-	map->map = malloc((int)sizeof(char*) * map->height);
+	map->maparr = malloc((int)sizeof(char*) * map->height);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		map->map[i++] = ft_strdup(line);
+		map->maparr[i++] = ft_strdup(line);
 		free(line);
-		if (ft_strlen(map->map[i - 1]) != map->width)
+		if (ft_strlen(map->maparr[i - 1]) != map->width)
 		{
 			perror("The Map is not rectangular");
 		}
-		printf("IN_MAP : %s\n", map->map[i - 1]);
+		printf("IN_MAP : %s\n", map->maparr[i - 1]);
 	}
-	map->map[i] = ft_strdup(line);
+	map->maparr[i] = ft_strdup(line);
 	free(line);
-	printf("IN_MAP : %s\n", map->map[i]);
+	printf("IN_MAP : %s\n", map->maparr[i]);
 	mlx->map = map;
 	close(fd);
 }

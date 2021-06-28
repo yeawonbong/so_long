@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 15:26:16 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/23 20:21:37 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/28 19:09:33 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	dst[i] = '\0';
 	return (dst);
+}
+
+void	*ft_memset(void *ptr, int value, size_t num)
+{
+	size_t			i;
+	unsigned char	*tempptr;
+
+	i = 0;
+	tempptr = (unsigned char *)ptr;
+	while (i < num)
+		tempptr[i++] = (unsigned char)value;
+	return (ptr);
 }

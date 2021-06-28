@@ -8,6 +8,7 @@
 #include "./get_next_line/get_next_line.h"
 
 # define KEYPRESS 2
+# define REDCROSS 17
 # define W 13
 # define A 0
 # define S 1
@@ -15,13 +16,13 @@
 # define ESC 53
 # define BITSIZE 64
 
-// typedef struct s_img
-// {
-// 	void	*wall;
-// 	void	*collectible;
-// 	void	*player;
-// 	void	*exitp;
-// }			t_img;
+typedef struct	s_check
+{
+	int		collectible_num;
+	int		player_num;
+	int		exitp_num;
+	int		change;
+}				t_check;
 
 typedef struct	s_map
 {
@@ -32,9 +33,10 @@ typedef struct	s_map
 	void	*wall;
 	void	*collectible;
 	void	*player;
-	char	*playerp;
 	void	*exitp;
 
+	int		curi;
+	int		curj;
 }				t_map;
 
 typedef struct s_mlx
@@ -44,19 +46,31 @@ typedef struct s_mlx
 	int		x;
 	int		y;
 	t_map	*map;
+	t_check	*check;
 }				t_mlx;
 
 /*
 **	so_long.c
 */
+int		finish_game(t_mlx *mlx);
 void	set_window(t_mlx *mlx);
 void	set_images(t_mlx *mlx);
-void	destroy_images(t_mlx *mlx);
 int		move_character(int keycode, t_mlx *mlx);
-void	draw_map(t_mlx *mlx);
+int		main(void);
 
-char	*error_exit();
+/*
+**	sl_get_map.c
+*/
 void	map_size(t_map *map);
 void	get_map(t_mlx *mlx);
+void	draw_map(t_mlx *mlx);
+
+/*
+**	sl_error_check.c
+*/
+void	*maperror();
+void	check_wall(t_map *map);
+void	check(t_check *check);
+
 
 #endif

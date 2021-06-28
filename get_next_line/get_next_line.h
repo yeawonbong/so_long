@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 19:48:36 by ybong             #+#    #+#             */
-/*   Updated: 2021/03/03 15:26:58 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/28 19:09:40 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ int		ft_strlen(const char *str);
 char	*ft_strdup(const char *str);
 char	*ft_strjoin(char *s1, char *s2);
 int		get_next_line(int fd, char **line);
+void	*ft_memset(void *ptr, int value, size_t num);
+
 #endif

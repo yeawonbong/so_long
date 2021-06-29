@@ -7,50 +7,33 @@ int		finish_game(t_mlx *mlx)
 	return (0);
 }
 
-int		move_character(int keycode, t_mlx *mlx)
+void		move_player(t_mlx *mlx, int	*idx, char c)
+{
+	mlx_clear_window(mlx->mlx_ptr, mlx->window);
+	mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
+	if (c == '-')
+		(*idx)--;
+	else if (c == '+')
+		(*idx)++;
+	if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E' || mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'B')
+		finish_game(mlx);
+	if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'C')
+		mlx->check->collectible_num--;
+	mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
+	draw_map(mlx);
+}
+
+
+int		get_key(int keycode, t_mlx *mlx)
 {
 	if (keycode == W && mlx->map->maparr[mlx->map->curi - 1][mlx->map->curj] != '1')
-	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->window);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
-		mlx->map->curi--;
-		if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E')
-			finish_game(mlx);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
-		draw_map(mlx);
-	}
+		move_player(mlx, &mlx->map->curi, '-');
 	if (keycode == S && mlx->map->maparr[mlx->map->curi + 1][mlx->map->curj] != '1')
-	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->window);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
-		mlx->map->curi++;
-		if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E')
-			finish_game(mlx);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
-		draw_map(mlx);
-	}
+		move_player(mlx, &mlx->map->curi, '+');
 	if (keycode == A && mlx->map->maparr[mlx->map->curi][mlx->map->curj - 1] != '1')
-	{
-		if (mlx->map->maparr[mlx->map->curi][mlx->map->curj - 1] == 'C')
-			mlx->check->collectible_num--;
-		mlx_clear_window(mlx->mlx_ptr, mlx->window);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
-		mlx->map->curj--;
-		if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E')
-			finish_game(mlx);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
-		draw_map(mlx);
-	}
+		move_player(mlx, &mlx->map->curj, '-');
 	if (keycode == D && mlx->map->maparr[mlx->map->curi][mlx->map->curj + 1] != '1')
-	{
-		mlx_clear_window(mlx->mlx_ptr, mlx->window);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
-		mlx->map->curj++;
-		if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E')
-			finish_game(mlx);
-		mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
-		draw_map(mlx);
-	}
+		move_player(mlx, &mlx->map->curj, '+');
 	if (keycode == ESC)
 		finish_game(mlx);
 	return 0;
@@ -69,7 +52,7 @@ int	main(void)
 	set_images(mlx);
 	draw_map(mlx);
 	check(mlx);
-	mlx_hook(mlx->window, KEYPRESS, 0, &move_character, mlx);
+	mlx_hook(mlx->window, KEYPRESS, 0, &get_key, mlx);
 	mlx_hook(mlx->window, REDCROSS, 0, &finish_game, mlx);
 	mlx_loop_hook(mlx->mlx_ptr, &change_image, mlx);//
 	mlx_loop(mlx->mlx_ptr);

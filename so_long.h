@@ -21,7 +21,6 @@ typedef struct	s_check
 	int		collectible_num;
 	int		player_num;
 	int		exitp_num;
-	int		change;
 }				t_check;
 
 typedef struct	s_map
@@ -31,9 +30,11 @@ typedef struct	s_map
 	int		height;
 
 	void	*wall;
+	void	*floor;
 	void	*collectible;
 	void	*player;
 	void	*exitp;
+	void	*blackhole;
 
 	int		curi;
 	int		curj;
@@ -48,13 +49,15 @@ typedef struct s_mlx
 	t_map	*map;
 	t_check	*check;
 	int		loop;
+	int		change;
 }				t_mlx;
 
 /*
 **	so_long.c
 */
 int		finish_game(t_mlx *mlx);
-int		move_character(int keycode, t_mlx *mlx);
+void	move_player(t_mlx *mlx, int	*idx, char c);
+int		get_key(int keycode, t_mlx *mlx);
 int		main(void);
 
 /*

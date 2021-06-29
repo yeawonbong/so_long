@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check.c                                      :+:      :+:    :+:   */
+/*   sl_error_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:59:10 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/28 22:21:09 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/29 18:02:15 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,33 @@ void	*maperror()
 	exit(EXIT_FAILURE);
 }
 
-void	check_wall(t_map *map)
+void	check_wall(t_mlx *mlx)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < mlx->map->height)
 	{
 		j = 0;
-		while (j < map->width && \
-		(i == 0 || i == map->height - 1))
+		while (j < mlx->map->width && \
+		(i == 0 || i == mlx->map->height - 1))
 		{
-			if (map->maparr[i][j] != '1')
+			if (mlx->map->maparr[i][j] != '1')
 				maperror();
 			j++;	
 		}
-		if (map->maparr[i][0] != '1' || map->maparr[i][map->width - 1] != '1')
+		if (mlx->map->maparr[i][0] != '1' || mlx->map->maparr[i][mlx->map->width - 1] != '1')
 			maperror();
 		i++;
 	}
 }
 
-void	check(t_check *check)
+void	check(t_mlx *mlx)
 {
-	if (check->collectible_num < 1 || check->exitp_num < 1 \
-	|| check->player_num != 1)
+	if (mlx->check->collectible_num < 1 || mlx->check->exitp_num < 1 \
+	|| mlx->check->player_num != 1)
 		maperror();
-	check_wall(map);
-	check->change = check->collectible_num / 3;
+	check_wall(mlx);
+	mlx->check->change = mlx->check->collectible_num / 3;
 }

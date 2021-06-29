@@ -47,16 +47,25 @@ typedef struct s_mlx
 	int		y;
 	t_map	*map;
 	t_check	*check;
+	int		loop;
 }				t_mlx;
 
 /*
 **	so_long.c
 */
 int		finish_game(t_mlx *mlx);
-void	set_window(t_mlx *mlx);
-void	set_images(t_mlx *mlx);
 int		move_character(int keycode, t_mlx *mlx);
 int		main(void);
+
+/*
+**	sl_set.c
+*/
+void	set_window(t_mlx *mlx);
+int		set_images(t_mlx *mlx);
+int		change_image(t_mlx *mlx);
+
+// void	change_image(t_mlx *mlx);
+
 
 /*
 **	sl_get_map.c
@@ -69,8 +78,8 @@ void	draw_map(t_mlx *mlx);
 **	sl_error_check.c
 */
 void	*maperror();
-void	check_wall(t_map *map);
-void	check(t_check *check);
+void	check_wall(t_mlx *mlx);
+void	check(t_mlx *mlx);
 
 
 #endif

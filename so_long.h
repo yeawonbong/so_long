@@ -21,6 +21,7 @@ typedef struct	s_check
 	int		collectible_num;
 	int		player_num;
 	int		exitp_num;
+	char	curkey;
 }				t_check;
 
 typedef struct	s_map

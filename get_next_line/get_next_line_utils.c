@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 15:26:16 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/28 19:09:33 by ybong            ###   ########.fr       */
+/*   Updated: 2021/06/30 21:34:21 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ int		ft_strlen(const char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+char	*ft_strchr(const char *str, int c)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char*)&str[i]);
+		i++;
+	}
+	if (str[i] == c)
+		return ((char*)&str[i]);
+	return (0);
 }
 
 char	*ft_strdup(const char *str)

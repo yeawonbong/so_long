@@ -1,7 +1,9 @@
 SRCS = so_long.c\
 sl_map.c\
 sl_set.c\
-sl_error_check.c
+sl_set_image.c\
+sl_error_check.c\
+ft_itoa.c
 
 CC = gcc
 CFLAGES = -Wall -Wextra -Werror

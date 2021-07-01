@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sl_map.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/01 18:02:23 by ybong             #+#    #+#             */
+/*   Updated: 2021/07/01 18:06:40 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	map_size(t_map *map)
@@ -27,27 +39,28 @@ void	get_map(t_mlx *mlx)
 	char	*line;
 	int		fd;
 	int		i;
-	t_map	*map;
 
 	i = 0;
-	fd = open("map.ber", O_RDONLY);
-	map = malloc(sizeof(t_map));
-	map_size(map);
-	map->maparr = malloc((int) sizeof(char *) * map->height);
+	if ((fd = open("map.ber", O_RDONLY)) < 0)
+	{
+		perror("The map doesn't exist. Error\n");
+		exit(EXIT_FAILURE);
+	}
+	map_size(mlx->map = malloc(sizeof(t_map)));
+	mlx->map->maparr = malloc((int)sizeof(char*) * mlx->map->height);
 	while ((get_next_line(fd, &line)) > 0)
 	{
-		map->maparr[i++] = ft_strdup(line);
+		mlx->map->maparr[i++] = ft_strdup(line);
 		free(line);
-		if (ft_strlen(map->maparr[i - 1]) != map->width)
+		if (ft_strlen(mlx->map->maparr[i - 1]) != mlx->map->width)
 		{
-			perror("The Map is not rectangular. Error\n");
+			perror("The map is not rectangular. Error\n");
 			exit(EXIT_FAILURE);
 		}
 	}
-	map->maparr[i] = ft_strdup(line);
+	mlx->map->maparr[i] = ft_strdup(line);
 	free(line);
 	close(fd);
-	mlx->map = map;
 }
 
 void	draw_10b(t_mlx *mlx, int i, int j)
@@ -85,6 +98,8 @@ void	draw_cep(t_mlx *mlx, int i, int j)
 		mlx->map->player, j * BITSIZE, i * BITSIZE);
 		mlx->check->player_num++;
 	}
+	mlx_string_put(mlx->mlx_ptr, mlx->window, 66, 66, \
+	0xFFFFFF, ft_itoa(mlx->movement));
 }
 
 void	draw_map(t_mlx *mlx)

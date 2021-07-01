@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/01 18:01:16 by ybong             #+#    #+#             */
+/*   Updated: 2021/07/01 18:01:25 by ybong            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int		finish_game(t_mlx *mlx)
@@ -7,7 +19,7 @@ int		finish_game(t_mlx *mlx)
 	return (0);
 }
 
-void		move_player(t_mlx *mlx, int	*idx, char c)
+void	move_player(t_mlx *mlx, int *idx, char c)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->window);
 	mlx->map->maparr[mlx->map->curi][mlx->map->curj] = '0';
@@ -15,8 +27,9 @@ void		move_player(t_mlx *mlx, int	*idx, char c)
 		(*idx)--;
 	else if (c == '+')
 		(*idx)++;
-	if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E' && \
-	0 < mlx->check->collectible_num)
+	if ((mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E' \
+	&& 0 < mlx->check->collectible_num) \
+	|| (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == '1'))
 	{
 		if (c == '-')
 			(*idx)++;
@@ -26,34 +39,33 @@ void		move_player(t_mlx *mlx, int	*idx, char c)
 		draw_map(mlx);
 		return ;
 	}
-	if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'E' \
-	|| mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'B')
+	if (ft_strchr("EB", mlx->map->maparr[mlx->map->curi][mlx->map->curj]))
 		finish_game(mlx);
 	if (mlx->map->maparr[mlx->map->curi][mlx->map->curj] == 'C')
 		mlx->check->collectible_num--;
 	mlx->map->maparr[mlx->map->curi][mlx->map->curj] = 'P';
+	mlx->movement++;
 	draw_map(mlx);
 }
 
 int		get_key(int keycode, t_mlx *mlx)
 {
-	if (keycode == W && mlx->map->maparr[mlx->map->curi - 1][mlx->map->curj] != '1')
+	if (keycode == W)
 	{
 		mlx->check->curkey = 'W';
 		move_player(mlx, &mlx->map->curi, '-');
 	}
-	if (keycode == S && mlx->map->maparr[mlx->map->curi + 1][mlx->map->curj] != '1')
+	if (keycode == S)
 	{
 		mlx->check->curkey = 'S';
 		move_player(mlx, &mlx->map->curi, '+');
 	}
-	if (keycode == A && mlx->map->maparr[mlx->map->curi][mlx->map->curj - 1] != '1')
+	if (keycode == A)
 	{
 		mlx->check->curkey = 'A';
 		move_player(mlx, &mlx->map->curj, '-');
 	}
-	if (keycode == D && \
-	mlx->map->maparr[mlx->map->curi][mlx->map->curj + 1] != '1')
+	if (keycode == D)
 	{
 		mlx->check->curkey = 'D';
 		move_player(mlx, &mlx->map->curj, '+');
@@ -63,7 +75,7 @@ int		get_key(int keycode, t_mlx *mlx)
 	return (0);
 }
 
-int	main(void)
+int		main(void)
 {
 	t_mlx	*mlx;
 

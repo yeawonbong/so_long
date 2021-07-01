@@ -15,12 +15,15 @@ OUT = so_long
 GNL = get_next_line.a
 GNL_DIR = ./get_next_line
 MLX = libmlx.dylib
+MLX_DIR = ./minilibx_mms_20200219
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	make all -C get_next_line
+	make all -C $(GNL_DIR)
+	make all -C $(MLX_DIR)
 	@cp $(GNL_DIR)/$(GNL) $(NAME)
+	@cp $(MLX_DIR)/$(MLX) .
 	$(AR) $@ $(OBJS)
 	$(CC) $(CFLAGES) $(NAME) $(MLX) -o $(OUT)
 
@@ -29,11 +32,13 @@ $(OBJS) : $(SRCS)
 
 clean : 
 	make clean -C $(GNL_DIR)
+	make clean -C $(MLX_DIR)
 	rm -f $(OBJS)
 
 fclean : clean
 	make fclean -C $(GNL_DIR)
 	rm -rf $(NAME) $(OUT)
+	rm -f $(MLX)
  
 re : fclean all
 

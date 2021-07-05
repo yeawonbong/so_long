@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:01:16 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/01 21:12:57 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 16:11:14 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		main(int argc, char *argv[])
 	if (argc != 2 ||
 	ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".ber", 4) != 0)
 	{
-		perror("invalid input. Error\n");
+		perror("Error\ninvalid input");
 		exit(EXIT_FAILURE);
 	}
 	mlx = malloc(sizeof(t_mlx));

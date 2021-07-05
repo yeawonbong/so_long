@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:02:23 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/01 20:21:53 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 16:11:47 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_map(t_mlx *mlx, char *filename)
 	i = 0;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 	{
-		perror("The map doesn't exist. Error\n");
+		perror("Error\nThe map doesn't exist");
 		exit(EXIT_FAILURE);
 	}
 	map_size(mlx->map = malloc(sizeof(t_map)), filename);
@@ -54,7 +54,7 @@ void	get_map(t_mlx *mlx, char *filename)
 		free(line);
 		if (ft_strlen(mlx->map->maparr[i - 1]) != mlx->map->width)
 		{
-			perror("The map is not rectangular. Error\n");
+			perror("Error\nThe map is not rectangular");
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -124,7 +124,7 @@ void	draw_map(t_mlx *mlx)
 				draw_cep(mlx, i, j);
 			else
 			{
-				perror("The map has invalid character. Error\n");
+				perror("Error\nThe map has invalid character");
 				exit(EXIT_FAILURE);
 			}
 			j++;

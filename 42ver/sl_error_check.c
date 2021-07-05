@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 19:59:10 by ybong             #+#    #+#             */
-/*   Updated: 2021/06/30 21:14:06 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 16:10:29 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*maperror(void)
 {
-	perror("The map is invalid. Error\n");
+	perror("Error\nThe map is invalid");
 	exit(EXIT_FAILURE);
 }
 

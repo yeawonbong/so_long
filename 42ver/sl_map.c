@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:02:23 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/05 17:15:12 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 20:27:49 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	map_size(t_map *map, char *filename)
 void	get_map(t_mlx *mlx, char *filename)
 {
 	char	*line;
-	int		fd;
 	int		i;
 
 	i = 0;
@@ -118,6 +117,7 @@ void	draw_map(t_mlx *mlx)
 	ft_memset(mlx->check, 0, sizeof(t_check));
 	i = 0;
 	j = 0;
+	rewrite_map(mlx, mlx->filename);
 	while (i < mlx->map->height)
 	{
 		while (j < mlx->map->width)

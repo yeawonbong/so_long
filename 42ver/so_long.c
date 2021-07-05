@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:01:16 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/05 16:11:14 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 20:28:54 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		main(int argc, char *argv[])
 		perror("Error\ninvalid input");
 		exit(EXIT_FAILURE);
 	}
+	mlx->filename = argv[1];
 	mlx = malloc(sizeof(t_mlx));
 	ft_memset(mlx, 0, sizeof(t_mlx));
 	mlx->check = malloc(sizeof(t_check));

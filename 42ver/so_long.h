@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:09:57 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/01 21:10:06 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 20:29:05 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_mlx
 	int			loop;
 	int			change;
 	int			movement;
+	char		*filename;
 }				t_mlx;
 
 /*
@@ -78,6 +79,7 @@ int				get_key(int keycode, t_mlx *mlx);
 */
 void			set_window(t_mlx *mlx);
 int				loop_draw(t_mlx *mlx);
+void			rewrite_map(t_mlx *mlx);
 
 /*
 **	sl_set_image.c
@@ -89,11 +91,11 @@ void			set_player2(t_mlx *mlx);
 void			set_player3(t_mlx *mlx);
 
 /*
-**	sl_get_map.c
+**	sl_map.c
 */
 void			map_size(t_map *map, char *filename);
 void			get_map(t_mlx *mlx, char *filename);
-void			draw_map(t_mlx *mlx);
+void			draw_map(t_mlx *mlx, char *filename);//////
 
 /*
 **	sl_error_check.c

@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:08:11 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/01 21:09:48 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 20:25:11 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,26 @@ int		loop_draw(t_mlx *mlx)
 	set_images(mlx);
 	draw_map(mlx);
 	return (0);
+}
+
+void	rewrite_map(t_mlx *mlx, char *filename)
+{
+	int	fd;
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	if ((fd = open(filename, O_RDONLY)) < 0)
+	{
+		perror("Error\nThe map doesn't exist");
+		exit(EXIT_FAILURE);
+	}
+	while (i < mlx->map->height)
+	{
+		write(fd, mlx->map->maparr[i], mlx->map->width);
+		if (mlx->map->maparr[i + 1])
+			write(fd, "\n", 1);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:02:23 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/05 16:11:00 by ybong            ###   ########.fr       */
+/*   Updated: 2021/07/05 17:15:12 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	map_size(t_map *map, char *filename)
 	int		gnl;
 
 	map->height = 1;
-	fd = open(filename, O_RDONLY);
+	if (0 > fd = open(filename, O_RDONLY))
+	{
+		perror("Error\nfailed reading file");
+		exit(EXIT_FAILURE);
+	}
 	gnl = 1;
 	while (gnl > 0)
 	{

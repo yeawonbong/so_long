@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sl_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybong <ybong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ybong <ybong@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 18:02:23 by ybong             #+#    #+#             */
-/*   Updated: 2021/07/05 20:27:49 by ybong            ###   ########.fr       */
+/*   Updated: 2022/01/26 18:00:42 by ybong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	map_size(t_map *map, char *filename)
 {
 	char	*line;
-	int		fd;
+	int		fd=0;
 	int		gnl;
 
 	map->height = 1;
-	if (0 > fd = open(filename, O_RDONLY))
+	if (0 > (fd = open(filename, O_RDONLY)))
 	{
 		perror("Error\nfailed reading file");
 		exit(EXIT_FAILURE);
@@ -42,6 +42,7 @@ void	get_map(t_mlx *mlx, char *filename)
 {
 	char	*line;
 	int		i;
+	int		fd=0;
 
 	i = 0;
 	if ((fd = open(filename, O_RDONLY)) < 0)
